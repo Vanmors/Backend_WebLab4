@@ -3,12 +3,19 @@ package com.vanmor.weblab4;
 
 //import com.vanmor.weblab4.DB.User;
 //import com.vanmor.weblab4.DB.UserDetailsRepos;
+
+//
 import com.vanmor.weblab4.DB.PointDetailsRepos;
+import com.vanmor.weblab4.DB.PointService;
+import com.vanmor.weblab4.DB.User;
+import com.vanmor.weblab4.Entities.PointDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 
 @RestController
@@ -20,11 +27,20 @@ public class SetData {
     @Autowired
     private PointDetailsRepos pointDetailsRepos;
 
-//    @GetMapping(value = "/hello", consumes = {"application/json"})
-    @GetMapping
+    @Autowired
+    PointService pointService;
+
+
+    //    @GetMapping(value = "/hello", consumes = {"application/json"})
+    @PostMapping
     @CrossOrigin
-    public Point getPoint(@RequestBody Point point){
+    public Point getPoint(@RequestBody Point point) {
         System.out.println("I'm here");
+        point.setId(1);
+        System.out.println(point.getX());
+        System.out.println(point.getY());
+        System.out.println(point.getR());
+//        System.out.println("I'm here");
 //        System.out.println(point);
         point.setHit(((point.getX() * point.getX() + point.getY() * point.getY()) <= point.getR() * point.getR() && point.getX() <= 0 && point.getY() >= 0) ||
                 (point.getY() + point.getX() <= point.getR() && point.getX() >= 0 && point.getY() <= 0) ||
@@ -32,6 +48,12 @@ public class SetData {
         pointDetailsRepos.save(point);
         return point;
     }
+
+        @GetMapping("/getAll")
+    public List<Point> getAllPoints(){
+        return pointService.getAllPoints();
+    }
+
 
 
 }
