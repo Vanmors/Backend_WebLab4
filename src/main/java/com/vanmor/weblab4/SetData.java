@@ -36,15 +36,15 @@ public class SetData {
     @CrossOrigin
     public Point getPoint(@RequestBody Point point) {
         System.out.println("I'm here");
-        point.setId(1);
+        long count = pointDetailsRepos.count();
+        point.setId(count + 1);
         System.out.println(point.getX());
         System.out.println(point.getY());
         System.out.println(point.getR());
-//        System.out.println("I'm here");
-//        System.out.println(point);
         point.setHit(((point.getX() * point.getX() + point.getY() * point.getY()) <= point.getR() * point.getR() && point.getX() <= 0 && point.getY() >= 0) ||
                 (point.getY() + point.getX() <= point.getR() && point.getX() >= 0 && point.getY() <= 0) ||
                 (point.getY() / 2 >= (point.getX() - point.getR() / 2) && point.getX() >= 0 && point.getY() >= 0));
+        System.out.println(point.getHit());
         pointDetailsRepos.save(point);
         return point;
     }

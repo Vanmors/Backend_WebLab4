@@ -11,12 +11,13 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Data
-@Entity(name = "points")
+@Entity(name = "point_test")
 @NoArgsConstructor
 public class Point {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id = System.nanoTime();
+    private Long id;
     @Column(name = "x")
     private Integer x;
     @Column(name = "y")
