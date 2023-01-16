@@ -7,7 +7,7 @@ package com.vanmor.weblab4;
 //
 import com.vanmor.weblab4.DB.PointDetailsRepos;
 import com.vanmor.weblab4.DB.PointService;
-import com.vanmor.weblab4.DB.User;
+//import com.vanmor.weblab4.DB.User;
 import com.vanmor.weblab4.Entities.PointDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,6 +33,7 @@ public class SetData {
 
     //    @GetMapping(value = "/hello", consumes = {"application/json"})
     @PostMapping
+//    @GetMapping
     @CrossOrigin
     public Point getPoint(@RequestBody Point point) {
         System.out.println("I'm here");
