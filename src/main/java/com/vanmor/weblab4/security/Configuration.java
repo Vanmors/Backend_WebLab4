@@ -24,8 +24,8 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @CrossOrigin
-@EnableWebSecurity(debug = true)
-//@EnableWebSecurity
+//@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class Configuration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -49,7 +49,7 @@ public class Configuration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests().anyRequest().permitAll();
-        http.cors().disable();
+        http.cors().and().csrf().disable();
         http.authorizeRequests().anyRequest().authenticated();
         http.formLogin()
                 .and()
