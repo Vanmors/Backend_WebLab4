@@ -8,10 +8,13 @@ package com.vanmor.weblab4;
 import com.vanmor.weblab4.DB.PointDetailsRepos;
 import com.vanmor.weblab4.DB.PointService;
 //import com.vanmor.weblab4.DB.User;
+import com.vanmor.weblab4.DB.User;
+import com.vanmor.weblab4.DB.UserDetailsRepos;
 import com.vanmor.weblab4.Entities.PointDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -23,12 +26,17 @@ import java.util.List;
 @CrossOrigin
 public class SetData {
 
+    @Autowired
+    private UserDetailsRepos userDetailsRepos;
 
     @Autowired
     private PointDetailsRepos pointDetailsRepos;
 
     @Autowired
     PointService pointService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     //    @GetMapping(value = "/hello", consumes = {"application/json"})
@@ -53,6 +61,15 @@ public class SetData {
         @GetMapping("/getAll")
     public List<Point> getAllPoints(){
         return pointService.getAllPoints();
+    }
+
+
+    @PostMapping(value = "/registration")
+    public void saveUser(@RequestBody User user){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        long count = userDetailsRepos.count();
+        user.setId(count + 1);
+        userDetailsRepos.save(user);
     }
 
 

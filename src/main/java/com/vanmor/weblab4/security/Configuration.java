@@ -50,7 +50,8 @@ public class Configuration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests().anyRequest().permitAll();
         http.cors().and().csrf().disable();
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/registration").not().fullyAuthenticated().
+                anyRequest().authenticated();
         http.formLogin()
                 .and()
                 .logout()
