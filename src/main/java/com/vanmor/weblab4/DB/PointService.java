@@ -13,7 +13,7 @@ public class PointService {
     private PointDetailsRepos pointDetailsRepos;
 
     public List<Point> getAllPoints() {
-        System.out.println(pointDetailsRepos.findAll());
+//        System.out.println(pointDetailsRepos.findAll());
         return pointDetailsRepos.findAll();
     }
 

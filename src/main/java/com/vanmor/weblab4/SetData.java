@@ -44,15 +44,14 @@ public class SetData {
 //    @GetMapping
     @CrossOrigin
     public Point getPoint(@RequestBody Point point) {
-        System.out.println("I'm here");
         long count = pointDetailsRepos.count();
         point.setId(count + 1);
         System.out.println(point.getX());
         System.out.println(point.getY());
         System.out.println(point.getR());
-        point.setHit(((point.getX() * point.getX() + point.getY() * point.getY()) <= point.getR() * point.getR() && point.getX() <= 0 && point.getY() >= 0) ||
-                (point.getY() + point.getX() <= point.getR() && point.getX() >= 0 && point.getY() <= 0) ||
-                (point.getY() / 2 >= (point.getX() - point.getR() / 2) && point.getX() >= 0 && point.getY() >= 0));
+//        point.setHit(((point.getX() * point.getX() + point.getY() * point.getY()) <= point.getR() * point.getR() && point.getX() <= 0 && point.getY() >= 0) ||
+//                (point.getY() + point.getX() <= point.getR() && point.getX() >= 0 && point.getY() <= 0) ||
+//                (point.getY() / 2 >= (point.getX() - point.getR() / 2) && point.getX() >= 0 && point.getY() >= 0));
         System.out.println(point.getHit());
         pointDetailsRepos.save(point);
         return point;

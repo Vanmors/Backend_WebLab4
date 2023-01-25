@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @Data
 @Entity(name = "point_test")
@@ -18,10 +20,16 @@ public class Point {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id = System.nanoTime();
     private Long id;
+    @Max(5)
+    @Min(-3)
     @Column(name = "x")
     private Integer x;
+    @Max(3)
+    @Min(-3)
     @Column(name = "y")
     private Double y;
+    @Max(5)
+    @Min(-3)
     @Column(name = "r")
     private Double r;
     @Column(name = "hit")
