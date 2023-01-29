@@ -10,11 +10,10 @@ import java.util.List;
 public class PointService {
 
     @Autowired
-    private PointDetailsRepos pointDetailsRepos;
+    private PointDetailsRepository pointDetailsRepository;
 
     public List<Point> getAllPoints() {
-//        System.out.println(pointDetailsRepos.findAll());
-        return pointDetailsRepos.findAll();
+        return pointDetailsRepository.findAll();
     }
 
 }

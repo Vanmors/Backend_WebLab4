@@ -5,19 +5,17 @@ package com.vanmor.weblab4;
 //import com.vanmor.weblab4.DB.UserDetailsRepos;
 
 //
-import com.vanmor.weblab4.DB.PointDetailsRepos;
+import com.vanmor.weblab4.DB.PointDetailsRepository;
 import com.vanmor.weblab4.DB.PointService;
 //import com.vanmor.weblab4.DB.User;
 import com.vanmor.weblab4.DB.User;
-import com.vanmor.weblab4.DB.UserDetailsRepos;
-import com.vanmor.weblab4.Entities.PointDTO;
+import com.vanmor.weblab4.DB.UserDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 
@@ -27,10 +25,10 @@ import java.util.List;
 public class SetData {
 
     @Autowired
-    private UserDetailsRepos userDetailsRepos;
+    private UserDetailsRepository userDetailsRepository;
 
     @Autowired
-    private PointDetailsRepos pointDetailsRepos;
+    private PointDetailsRepository pointDetailsRepository;
 
     @Autowired
     PointService pointService;
@@ -39,36 +37,31 @@ public class SetData {
     PasswordEncoder passwordEncoder;
 
 
-    //    @GetMapping(value = "/hello", consumes = {"application/json"})
     @PostMapping
-//    @GetMapping
     @CrossOrigin
     public Point getPoint(@RequestBody Point point) {
-        long count = pointDetailsRepos.count();
+        long count = pointDetailsRepository.count();
         point.setId(count + 1);
-        System.out.println(point.getX());
-        System.out.println(point.getY());
-        System.out.println(point.getR());
-//        point.setHit(((point.getX() * point.getX() + point.getY() * point.getY()) <= point.getR() * point.getR() && point.getX() <= 0 && point.getY() >= 0) ||
-//                (point.getY() + point.getX() <= point.getR() && point.getX() >= 0 && point.getY() <= 0) ||
-//                (point.getY() / 2 >= (point.getX() - point.getR() / 2) && point.getX() >= 0 && point.getY() >= 0));
-        System.out.println(point.getHit());
-        pointDetailsRepos.save(point);
+        pointDetailsRepository.save(point);
         return point;
     }
 
-        @GetMapping("/getAll")
+
+
+    @GetMapping("/getAll")
     public List<Point> getAllPoints(){
         return pointService.getAllPoints();
     }
 
 
+
+    
     @PostMapping(value = "/registration")
     public void saveUser(@RequestBody User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        long count = userDetailsRepos.count();
+        long count = userDetailsRepository.count();
         user.setId(count + 1);
-        userDetailsRepos.save(user);
+        userDetailsRepository.save(user);
     }
 
 

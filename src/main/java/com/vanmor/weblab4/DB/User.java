@@ -3,6 +3,8 @@ package com.vanmor.weblab4.DB;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,8 +12,11 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @Entity
+@Primary
+@Qualifier
 public class User {
     @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)

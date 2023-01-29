@@ -24,27 +24,9 @@ import javax.sql.DataSource;
 @EnableJpaRepositories
 public class WebLab4Application {
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
-
-//    @Autowired
-//    private UserDetailsRepos userDetailsRepos;
     
     public static void main(String[] args) {
         SpringApplication.run(WebLab4Application.class, args);
     }
-
-//    @PostConstruct
-//    protected void init(){
-//        User user = new User();
-//
-//        user.setUserName("Nate");
-//        user.setPassword(passwordEncoder.encode("1234"));
-//        user.setEnabled(true);
-//
-//        userDetailsRepos.save(user);
-//
-//    }
-
 
 }
