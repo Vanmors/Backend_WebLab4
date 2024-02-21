@@ -1,6 +1,6 @@
-package com.vanmor.weblab4.DB;
+package com.vanmor.weblab4.repository;
 
-import com.vanmor.weblab4.Point;
+import com.vanmor.weblab4.entity.Point;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

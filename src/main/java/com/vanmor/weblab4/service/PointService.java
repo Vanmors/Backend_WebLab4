@@ -1,6 +1,7 @@
-package com.vanmor.weblab4.DB;
+package com.vanmor.weblab4.service;
 
-import com.vanmor.weblab4.Point;
+import com.vanmor.weblab4.repository.PointDetailsRepository;
+import com.vanmor.weblab4.entity.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

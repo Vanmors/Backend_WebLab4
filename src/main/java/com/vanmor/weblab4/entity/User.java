@@ -1,6 +1,5 @@
-package com.vanmor.weblab4.DB;
+package com.vanmor.weblab4.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,7 +8,6 @@ import org.springframework.context.annotation.Primary;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Table(name = "users")
 @Getter

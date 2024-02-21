@@ -1,5 +1,7 @@
-package com.vanmor.weblab4.DB;
+package com.vanmor.weblab4.service;
 
+import com.vanmor.weblab4.repository.UserDetailsRepository;
+import com.vanmor.weblab4.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,17 +15,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class CustomUserService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     private UserDetailsRepository userDetailsRepository;
 
     @Autowired
-    public void setUserDetailsRepos(UserDetailsRepository userDetailsRepository){
+    public void setUserDetailsRepos(UserDetailsRepository userDetailsRepository) {
         this.userDetailsRepository = userDetailsRepository;
     }
 
 
-    public User findByUsername(String username){
+    public User findByUsername(String username) {
         return userDetailsRepository.findByUserName(username);
     }
 
@@ -39,7 +41,7 @@ public class CustomUserService implements UserDetailsService {
     }
 
 
-    private Collection<? extends GrantedAuthority> Authority(){
+    private Collection<? extends GrantedAuthority> Authority() {
 
         Set<GrantedAuthority> authorities = new HashSet<>(1);
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
