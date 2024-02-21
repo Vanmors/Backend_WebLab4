@@ -15,17 +15,12 @@ import java.util.List;
 public class PointController {
 
     @Autowired
-    private PointDetailsRepository pointDetailsRepository;
-
-    @Autowired
     PointService pointService;
 
     @PostMapping
     @CrossOrigin
-    public Point getPoint(@RequestBody Point point) {
-        long count = pointDetailsRepository.count();
-        point.setId(count + 1);
-        pointDetailsRepository.save(point);
+    public Point create(@RequestBody Point point) {
+        pointService.create(point);
         return point;
     }
 

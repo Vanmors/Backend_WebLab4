@@ -19,10 +19,9 @@ public class AuthorizationController {
     PasswordEncoder passwordEncoder;
 
     @PostMapping(value = "/registration")
-    public void saveUser(@RequestBody User user) {
+    public User create(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        long count = userDetailsRepository.count();
-        user.setId(count + 1);
         userDetailsRepository.save(user);
+        return user;
     }
 }

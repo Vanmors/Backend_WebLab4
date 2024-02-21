@@ -17,4 +17,12 @@ public class PointService {
         return pointDetailsRepository.findAll();
     }
 
+
+    public Point create(Point point) {
+        pointDetailsRepository.save(point);
+        return pointDetailsRepository.save(point);
+    }
+
+
+
 }
