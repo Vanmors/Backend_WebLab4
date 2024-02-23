@@ -1,5 +1,7 @@
 package com.vanmor.weblab4.service;
 
+import com.vanmor.weblab4.DTO.PointDTO;
+import com.vanmor.weblab4.entity.Point;
 import com.vanmor.weblab4.repository.UserDetailsRepository;
 import com.vanmor.weblab4.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,10 @@ import java.util.Set;
 public class UserService implements UserDetailsService {
 
     private UserDetailsRepository userDetailsRepository;
+
+    public User create(User user) {
+        return userDetailsRepository.save(user);
+    }
 
     @Autowired
     public void setUserDetailsRepos(UserDetailsRepository userDetailsRepository) {
