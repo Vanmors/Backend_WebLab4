@@ -1,9 +1,11 @@
 package com.vanmor.weblab4.controller;
 
-import com.vanmor.weblab4.repository.PointDetailsRepository;
+import com.vanmor.weblab4.DTO.PointDTO;
 import com.vanmor.weblab4.service.PointService;
 import com.vanmor.weblab4.entity.Point;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,9 +21,8 @@ public class PointController {
 
     @PostMapping
     @CrossOrigin
-    public Point create(@RequestBody Point point) {
-        pointService.create(point);
-        return point;
+    public ResponseEntity<Point> create(@RequestBody PointDTO pointDTO) {
+        return new ResponseEntity<>(pointService.create(pointDTO), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
